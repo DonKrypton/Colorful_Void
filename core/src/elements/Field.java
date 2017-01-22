@@ -10,37 +10,37 @@ package elements;
 public class Field {
     private int[][] field;
 
-    // field is 20 high, 10 wide. plus 1 on left/right/down/up for collision detect and stone spawning
-    private final int VERTICAL_TILES;
-    private final int HORIZONTAL_TILES;
+    // field is 20 high, 10 wide.
+    private final int ROWS_VERT;
+    private final int COL_HORI;
 
     private int[] filledRows; //remembers which row is filled
     private int comboCount;	// counts the filled rows
 
     public Field(){
-        VERTICAL_TILES = 22;
-        HORIZONTAL_TILES = 12;
-        field = new int[VERTICAL_TILES][HORIZONTAL_TILES];
+        ROWS_VERT = 20;
+        COL_HORI = 10;
+        field = new int[ROWS_VERT][COL_HORI];
 
-        for(int i=0; i<VERTICAL_TILES; i++){ // initialize board with Zeroes
-            for(int j=0; j<HORIZONTAL_TILES; j++){
+        for(int i = 0; i< ROWS_VERT; i++){ // initialize board with Zeroes
+            for(int j = 0; j< COL_HORI; j++){
                 field[i][j] = 0;
             }
         }
 
-        filledRows = new int[VERTICAL_TILES]; // no rows filled yet
+        filledRows = new int[ROWS_VERT]; // no rows filled yet
         resetFillingsMemory();
     }
 
     // Count filled rows, return the points and reset the count
     // REFACTOR; DIVIDE; OUTSOURCE TO LOGIC CLASS (?)
     public int evaluateField(){
-        for (int i=0; i<VERTICAL_TILES; i++){
-            for (int j=0; j<HORIZONTAL_TILES; j++){
+        for (int i = 0; i< ROWS_VERT; i++){
+            for (int j = 0; j< COL_HORI; j++){
                 if (field[i][j]==0){
                     break;
 
-                } else if (field[i][HORIZONTAL_TILES - 1] != 0){
+                } else if (field[i][COL_HORI - 1] != 0){
                     comboCount++;
                     filledRows[i]=1;
                 }
@@ -54,16 +54,16 @@ public class Field {
 
     // Reset memory of filled rows
     private void resetFillingsMemory(){
-        for(int i = 0; i<VERTICAL_TILES; i++){
+        for(int i = 0; i< ROWS_VERT; i++){
             filledRows[i]= 0;
         }
     }
 
     // clear the filled rows
     private void clearFilledRows(){
-        for(int i=0; i<VERTICAL_TILES; i++){
+        for(int i = 0; i< ROWS_VERT; i++){
             if(filledRows[i] != 0){
-                for(int j=0; j<HORIZONTAL_TILES; j++){
+                for(int j = 0; j< COL_HORI; j++){
                     field[i][j] = 0;
                 }
             }

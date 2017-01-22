@@ -1,5 +1,7 @@
 package elements;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * Created by Daniel on 08.01.2017.
  */
@@ -12,6 +14,7 @@ public class Stone {
     private int[][] stone;
     private int stoneType;
     private int[][] temp;
+    private Vector2 currentPosition; // shows where Stone is on field array[][]
 
     public Stone(int stoneType){
         this.stoneType = stoneType;
@@ -62,14 +65,6 @@ public class Stone {
         }
     }
 
-    public int[][] getStone(){
-        return stone;
-    }
-
-    public int getStoneType(){
-        return stoneType;
-    }
-
     // Rotate the stone. Boolean decides clockwise vs counter-clockwise
     public void rotateClockwise(boolean clockwise){
         temp = stone;
@@ -88,6 +83,22 @@ public class Stone {
                 }
             }
         }
+    }
+
+    public int[][] getStone(){
+        return stone;
+    }
+
+    public int getStoneType(){
+        return stoneType;
+    }
+
+    public Vector2 getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(Vector2 newPosition){
+        this.currentPosition = newPosition;
     }
 }
 
